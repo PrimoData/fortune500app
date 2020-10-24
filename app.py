@@ -7,10 +7,13 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 app.secret_key = 'development key'
 
+data = pd.read_excel("Fortune500_2020_Final.xlsx")
+data.index.name = None
+
 
 @app.route('/')
 def index():
-    return render_template('index.html') 
+    return render_template('index.html', data=data, data_table=data.to_html(classes='table')) 
 
 
 if __name__ == "__main__":

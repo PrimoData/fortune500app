@@ -17,25 +17,68 @@
 
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Fortune 500 Diversity</h1>
-            </div>  
+    <div class="container-fluid" style="background-color: blue;">
+        <div class='row  bg-light' style="padding-bottom: 20px">
+            <a class="navbar-brand" href="/" style="padding-top: 20px; padding-left: 30px;">
+                <img src="{{ url_for('static', filename='unity.png') }}" height="30" class="d-inline-block align-center" alt="">
+            </a>
         </div>
-        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron" style="padding: 10px 0px;margin-bottom: 10px; background-color: transparent; color: white;">
+                        <h1>Corporate Diversity & Inclusion</h1>
+                        <p class="lead">See what the biggest companies in the U.S. are doing to solve the problem of systemic racism in corporate america.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>             
+
+    <div class="container">
+        <br>
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">The Data</h3>
-                  </div>                  
-                  <div class="panel-body">
-                    <h3>Data</h3>
-                  </div>
-                </div>        
+                <h3>Data</h3>                
+                <table class="table table-bordered">
+                    <tr class="active">
+                        <th>Fortune 500 Rank</th>
+                        <th>Company</th>
+                        <th>Diversity Report</th>
+                        <th>Diversity Exec/VP</th>
+                        <th>Diversity Landing Page</th>
+                    </tr>
+                    {% for rownum,row in data.iterrows() %}
+                    <tr>    
+                        <td>{{row.iloc[0]}}</td>
+                        <td>{{row.iloc[1]}}</td>
+
+                        {% if (row.iloc[2]) != "N" %}
+                            <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
+                        {% else %}
+                            <td style="text-align:center"></td>
+                        {% endif %}
+
+                        {% if (row.iloc[4]) == "Y" %}
+                            <td style="text-align:center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        {% elif (row.iloc[4]) == "N" %}
+                            <td style="text-align:center"></td>              
+                        {% else %}
+                            <td style="text-align:center">{{row.iloc[4]}}</td>
+                        {% endif %}
+
+                        {% if (row.iloc[5]) != "N" %}
+                            <td><a href='{{row.iloc[5]}}' target="_blank">{{row.iloc[5]}}</a></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                    </tr>
+                    {% endfor %}
+                </table>                
             </div>        
         </div>
+
     </div>
 {% endblock %}
 
