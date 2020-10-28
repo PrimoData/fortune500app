@@ -113,42 +113,44 @@ p.card-text{
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <tr class="active">
-                            <th>Fortune 500 Rank</th>
-                            <th>Company</th>
-                            <th>Diversity Report</th>
-                            <th>Diversity Exec/VP</th>
-                            <th>Diversity Landing Page</th>
-                        </tr>
-                        {% for rownum,row in data.iterrows() %}
-                        <tr>    
-                            <td>{{row.iloc[0]}}</td>
-                            <td>{{row.iloc[1]}}</td>
-    
-                            {% if (row.iloc[2]) != "N" %}
-                                <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
-                            {% else %}
-                                <td style="text-align:center"></td>
-                            {% endif %}
-    
-                            {% if (row.iloc[4]) == "Y" %}
-                                <td style="text-align:center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                            {% elif (row.iloc[4]) == "N" %}
-                                <td style="text-align:center"></td>              
-                            {% else %}
-                                <td style="text-align:center">{{row.iloc[4]}}</td>
-                            {% endif %}
-    
-                            {% if (row.iloc[5]) != "N" %}
-                                <td><a href='{{row.iloc[5]}}' target="_blank">Link</a></td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
-    
-                        </tr>
-                        {% endfor %}
-                    </table>   
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr class="active">
+                                <th>Fortune 500 Rank</th>
+                                <th>Company</th>
+                                <th>Diversity Report</th>
+                                <th>Diversity Exec/VP</th>
+                                <th>Diversity Landing Page</th>
+                            </tr>
+                            {% for rownum,row in data.iterrows() %}
+                            <tr>    
+                                <td>{{row.iloc[0]}}</td>
+                                <td>{{row.iloc[1]}}</td>
+        
+                                {% if (row.iloc[2]) != "N" %}
+                                    <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
+                                {% else %}
+                                    <td style="text-align:center"></td>
+                                {% endif %}
+        
+                                {% if (row.iloc[4]) == "Y" %}
+                                    <td style="text-align:center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                {% elif (row.iloc[4]) == "N" %}
+                                    <td style="text-align:center"></td>              
+                                {% else %}
+                                    <td style="text-align:center">{{row.iloc[4]}}</td>
+                                {% endif %}
+        
+                                {% if (row.iloc[5]) != "N" %}
+                                    <td><a href='{{row.iloc[5]}}' target="_blank">Link</a></td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+        
+                            </tr>
+                            {% endfor %}
+                        </table>   
+                    </div>
                 </div>
             </div>             
         </div>        
@@ -161,6 +163,16 @@ p.card-text{
 
 {% block scripts %}
 {{super()}}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-167FMM217P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-167FMM217P');
+</script>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {% endblock %}
