@@ -12,6 +12,10 @@ body{
     background-color: #F4F7FC;    
 }
 
+.table{
+    font-size:1rem;
+}
+
 h5.card-title{
     text-align:center;
     font-size:1.5rem
@@ -35,6 +39,14 @@ p.card-text{
     box-shadow: 0 2px 4px rgba(126,142,177,.12);
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+
+@media (max-width: 1200px) {
+    #companies_td{
+        width: 100px;
+        white-space: normal;
+    }
 }
 
 </style>
@@ -118,35 +130,35 @@ p.card-text{
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tr class="active">
-                                <th>Fortune 500 Rank</th>
+                                <th id="companies_td">Fortune Rank</th>
                                 <th>Company</th>
                                 <th>Diversity Report</th>
                                 <th>Diversity Exec/VP</th>
-                                <th>Diversity Landing Page</th>
+                                <th>Diversity Page</th>
                             </tr>
                             {% for rownum,row in data.iterrows() %}
                             <tr>    
                                 <td>{{row.iloc[0]}}</td>
-                                <td>{{row.iloc[1]}}</td>
+                                <td id="companies_td">{{row.iloc[1]}}</td>
         
                                 {% if (row.iloc[2]) != "N" %}
-                                    <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
+                                    <td id="companies_td"><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
                                 {% else %}
-                                    <td style="text-align:center"></td>
+                                    <td style="text-align:center" id="companies_td"></td>
                                 {% endif %}
         
                                 {% if (row.iloc[4]) == "Y" %}
-                                    <td style="text-align:center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                    <td style="text-align:center" id="companies_td"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                                 {% elif (row.iloc[4]) == "N" %}
-                                    <td style="text-align:center"></td>              
+                                    <td style="text-align:center" id="companies_td"></td>              
                                 {% else %}
-                                    <td style="text-align:center">{{row.iloc[4]}}</td>
+                                    <td style="text-align:center" id="companies_td">{{row.iloc[4]}}</td>
                                 {% endif %}
         
                                 {% if (row.iloc[5]) != "N" %}
-                                    <td><a href='{{row.iloc[5]}}' target="_blank">Link</a></td>
+                                    <td><a href='{{row.iloc[5]}}' target="_blank" id="companies_td">Link</a></td>
                                 {% else %}
-                                    <td></td>
+                                    <td id="companies_td"></td>
                                 {% endif %}
         
                             </tr>
