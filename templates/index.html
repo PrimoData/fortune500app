@@ -12,13 +12,10 @@ body{
     background-color: #F4F7FC;    
 }
 
-.table{
-    font-size:1rem;
-}
-
-h5.card-title{
+h3.card-title{
     text-align:center;
-    font-size:1.5rem
+    font-size:2rem;
+    font-weight:normal;
 }
 
 p.card-text{
@@ -42,10 +39,10 @@ p.card-text{
 }
 
 
-@media (max-width: 1200px) {
-    #companies_td{
-        width: 100px;
-        white-space: normal;
+@media (max-width: 600px) {
+    #custom.table{
+        font-size:1rem;
+        width:300px;
     }
 }
 
@@ -54,7 +51,7 @@ p.card-text{
 
 
 {% block title %}
-    Corporate D&I
+    Corporate Diversity Data
 {% endblock %}
 
 
@@ -69,12 +66,12 @@ p.card-text{
     </div>
 </div>
 
-<div class="container-fluid" style="background-color: #153D77; padding-bottom: 100px;">
+<div class="container-fluid" style="background-color: #153D77; padding-bottom: 40px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron" style="padding: 10px 0px;margin-bottom: 10px; background-color: transparent; color: white;">
-                    <h1>Open Corporate Diversity Data</h1>
+                    <h1>Open Diversity Data</h1>
                     <p class="lead">See what the biggest companies in the U.S. are doing to address issues of diversity and inclusion in "Corporate America".</p>
                 </div>
             </div>
@@ -82,40 +79,47 @@ p.card-text{
     </div>
 </div>       
 
-<div class="container" style="margin-top: -90px;">
+<div class="container" style="margin-top: 20px;">
     <br>
-
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Fortune 100 Company Data</h1>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">Diversity Reports <span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span></h5>
+            <h3 class="card-title">Reporting<span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span></h3>
             <p class="card-text">{{reports}}</p>
                 <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 86%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
+            <p>Released a diversity report or CSR report w/ diversity info since 2018.</p>
             </div>
         </div>
         </div>
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">Diversity Leaders <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span></h5>
+            <h3 class="card-title">Leadership<span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span></h3>
             <p class="card-text">{{leaders}}</p>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 90%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>            
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 88%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            <p>Have a person leading diversity efforts at a manager level or above.</p>
             </div>
         </div>
         </div>
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h5 class="card-title">Diversity Landing Pages <span class="glyphicon glyphicon-phone pull-right" aria-hidden="true"></span></h5>
+            <h3 class="card-title">Commitment<span class="glyphicon glyphicon-phone pull-right" aria-hidden="true"></span></h3>
             <p class="card-text">{{pages}}</p>
                 <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 89%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 93%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>            
+            <p>Created a webpage dedicated to discussing diversity & inclusion initiatives.</p>
             </div>
         </div>
         </div>          
@@ -123,48 +127,46 @@ p.card-text{
 
     <br>
 
-    <div class="row">
+    <div class="row" style="margin-top: -20px;">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tr class="active">
-                                <th id="companies_td">Fortune Rank</th>
-                                <th>Company</th>
-                                <th>Diversity Report</th>
-                                <th>Diversity Exec/VP</th>
-                                <th>Diversity Page</th>
-                            </tr>
-                            {% for rownum,row in data.iterrows() %}
-                            <tr>    
-                                <td>{{row.iloc[0]}}</td>
-                                <td id="companies_td">{{row.iloc[1]}}</td>
-        
-                                {% if (row.iloc[2]) != "N" %}
-                                    <td id="companies_td"><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
-                                {% else %}
-                                    <td style="text-align:center" id="companies_td"></td>
-                                {% endif %}
-        
-                                {% if (row.iloc[4]) == "Y" %}
-                                    <td style="text-align:center" id="companies_td"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% elif (row.iloc[4]) == "N" %}
-                                    <td style="text-align:center" id="companies_td"></td>              
-                                {% else %}
-                                    <td style="text-align:center" id="companies_td">{{row.iloc[4]}}</td>
-                                {% endif %}
-        
-                                {% if (row.iloc[5]) != "N" %}
-                                    <td><a href='{{row.iloc[5]}}' target="_blank" id="companies_td">Link</a></td>
-                                {% else %}
-                                    <td id="companies_td"></td>
-                                {% endif %}
-        
-                            </tr>
-                            {% endfor %}
-                        </table>   
-                    </div>
+                    <table id="custom" class="table table-bordered">
+                        <tr class="active">
+                            <th id="companies_td">Rank</th>
+                            <th>Company</th>
+                            <th>Diversity Report</th>
+                            <th>Diversity Exec/VP</th>
+                            <th>Diversity Page</th>
+                        </tr>
+                        {% for rownum,row in data.iterrows() %}
+                        <tr>    
+                            <td>{{row.iloc[0]}}</td>
+                            <td id="companies_td">{{row.iloc[1]}}</td>
+    
+                            {% if (row.iloc[2]) != "N" %}
+                                <td id="companies_td"><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
+                            {% else %}
+                                <td style="text-align:center" id="companies_td"></td>
+                            {% endif %}
+    
+                            {% if (row.iloc[4]) == "Y" %}
+                                <td style="text-align:center" id="companies_td"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                            {% elif (row.iloc[4]) == "N" %}
+                                <td style="text-align:center" id="companies_td"></td>              
+                            {% else %}
+                                <td style="text-align:center" id="companies_td">{{row.iloc[4]}}</td>
+                            {% endif %}
+    
+                            {% if (row.iloc[5]) != "N" %}
+                                <td><a href='{{row.iloc[5]}}' target="_blank" id="companies_td">Link</a></td>
+                            {% else %}
+                                <td id="companies_td"></td>
+                            {% endif %}
+    
+                        </tr>
+                        {% endfor %}
+                    </table>   
                 </div>
             </div>             
         </div>        

@@ -12,9 +12,9 @@ app.secret_key = 'development key'
 data = pd.read_excel("Fortune500_2020_Final.xlsx")
 data.index.name = None
 
-reports = str((1 - data['Diversity Report Title'].value_counts(normalize=True)['N'])*100) + '%'
-leaders = str((1 - data['Diversity Leader'].value_counts(normalize=True)['N'])*100) + '%'
-pages = str((1 - data['Landing Page'].value_counts(normalize=True)['N'])*100) + '%'
+reports = str(int((1 - data['Diversity Report Title'].value_counts(normalize=True)['N'])*100)) + '%'
+leaders = str(int((1 - data['Diversity Leader'].value_counts(normalize=True)['N'])*100)) + '%'
+pages = str(int((1 - data['Landing Page'].value_counts(normalize=True)['N'])*100)) + '%'
 
 @app.route('/')
 def index():
