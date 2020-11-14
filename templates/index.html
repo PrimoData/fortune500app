@@ -139,7 +139,7 @@ p.card-text{
                 <h1>Analyze Data</h1>
                 <p class="lead">We've compiled detailed diversity data (EEO-1) for the only 10 Fortune 100 companies who've provided it since 2016.</p>
             </div>
-            <div class='tableauPlaceholder' id='viz1605324519542' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CorporateDiversityData&#47;Dashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1605324519542');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='719px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='719px';} else { vizElement.style.width='100%';vizElement.style.height='1327px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+            <div class='tableauPlaceholder' id='viz1605384266910' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CorporateDiversityData&#47;Dashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1605384266910');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else { vizElement.style.width='100%';vizElement.style.height='1427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
             </div>
             </div>
         </div>
@@ -161,7 +161,7 @@ p.card-text{
                                 <th id="companies_td">Fortune Rank</th>
                                 <th>Company</th>
                                 <th>Report</th>
-                                <th>Data</th>
+                                <th>Dataset</th>
                                 <th>Leader</th>
                                 <th>Web Page</th>
                             </tr>
@@ -177,22 +177,20 @@ p.card-text{
                                 <td style="text-align:center" id="companies_td"></td>
                             {% endif %}
 
-                            {% if (row.iloc[6]) != "N" %}
-                                <td id="companies_td"><a href='{{row.iloc[7]}}' target="_blank">{{row.iloc[6]}}</a></td>
+                            {% if (row.iloc[5]) != "N" %}
+                                <td id="companies_td"><a href='{{row.iloc[6]}}' target="_blank">{{row.iloc[5]}}</a></td>
                             {% else %}
                                 <td style="text-align:center" id="companies_td"></td>
                             {% endif %}                            
     
-                            {% if (row.iloc[4]) == "Y" %}
-                                <td style="text-align:center" id="companies_td"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                            {% elif (row.iloc[4]) == "N" %}
-                                <td style="text-align:center" id="companies_td"></td>              
+                            {% if (row.iloc[7]) != "N" %}
+                                <td id="companies_td"><a href='{{row.iloc[9]}}' target="_blank">{{row.iloc[7]}} ({{row.iloc[8]}})</a></td>
                             {% else %}
-                                <td style="text-align:center" id="companies_td">{{row.iloc[4]}}</td>
+                                <td id="companies_td"></td>
                             {% endif %}
     
-                            {% if (row.iloc[5]) != "N" %}
-                                <td><a href='{{row.iloc[5]}}' target="_blank" id="companies_td">Link</a></td>
+                            {% if (row.iloc[4]) != "N" %}
+                                <td><a href='{{row.iloc[4]}}' target="_blank" id="companies_td">Link</a></td>
                             {% else %}
                                 <td id="companies_td"></td>
                             {% endif %}
