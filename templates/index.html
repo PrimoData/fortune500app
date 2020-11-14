@@ -66,6 +66,10 @@ p.card-text{
     }
 }
 
+.table>tbody>tr>td{
+    padding:3px;
+}
+
 </style>
 {% endblock %}
 
@@ -158,7 +162,7 @@ p.card-text{
                     <table id="custom" class="table">
                         <thead>
                             <tr>
-                                <th id="companies_td">Fortune Rank</th>
+                                <th>Fortune Rank</th>
                                 <th>Company</th>
                                 <th>Report</th>
                                 <th>Dataset</th>
@@ -169,30 +173,30 @@ p.card-text{
                         {% for rownum,row in data.iterrows() %}
                         <tr>    
                             <td style="text-align:center">{{row.iloc[0]}}</td>
-                            <td id="companies_td">{{row.iloc[1]}}</td>
+                            <td>{{row.iloc[1]}}</td>
     
                             {% if (row.iloc[2]) != "N" %}
-                                <td id="companies_td"><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
+                                <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
                             {% else %}
-                                <td style="text-align:center" id="companies_td"></td>
+                                <td></td>
                             {% endif %}
 
                             {% if (row.iloc[5]) != "N" %}
-                                <td id="companies_td"><a href='{{row.iloc[6]}}' target="_blank">{{row.iloc[5]}}</a></td>
+                                <td><a href='{{row.iloc[6]}}' target="_blank">{{row.iloc[5]}}</a></td>
                             {% else %}
-                                <td style="text-align:center" id="companies_td"></td>
+                                <td></td>
                             {% endif %}                            
     
                             {% if (row.iloc[7]) != "N" %}
-                                <td id="companies_td"><a href='{{row.iloc[9]}}' target="_blank">{{row.iloc[7]}} ({{row.iloc[8]}})</a></td>
+                                <td><a href='{{row.iloc[9]}}' target="_blank">{{row.iloc[7]}} ({{row.iloc[8]}})</a></td>
                             {% else %}
-                                <td id="companies_td"></td>
+                                <td></td>
                             {% endif %}
     
                             {% if (row.iloc[4]) != "N" %}
-                                <td><a href='{{row.iloc[4]}}' target="_blank" id="companies_td">Link</a></td>
+                                <td><a href='{{row.iloc[4]}}' target="_blank">Link</a></td>
                             {% else %}
-                                <td id="companies_td"></td>
+                                <td></td>
                             {% endif %}
     
                         </tr>
