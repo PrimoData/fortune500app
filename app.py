@@ -13,16 +13,18 @@ bootstrap = Bootstrap(app)
 app.secret_key = 'development key'
 
 data = pd.read_excel("Fortune500_2020_Final.xlsx")
+data['Rank'] = data['Rank'].fillna(99999).astype("int").astype("str").replace("99999","n/a")
 data.index.name = None
+detailed_data = pd.read_excel("static/eeo_cleaned.xlsx")
 
-reports = str(int((1 - data['Diversity Report Title'].value_counts(normalize=True)['N'])*100)) + ''
-leaders = str(int((1 - data['Diversity Leader Name'].value_counts(normalize=True)['N'])*100)) + ''
-pages = str(int((1 - data['Landing Page'].value_counts(normalize=True)['N'])*100)) + ''
+reports = str(int(data['EEO Data Report'].value_counts().sum() - data['EEO Data Report'].value_counts()['N']))
+fortune500 = str(int(data.loc[(data['Rank'] != 'n/a') & (data["EEO Data Report"] != 'N'),"EEO Data Report"].value_counts().sum())/500*100)
+employees = str("{:,}".format(detailed_data["count"].sum()))
 
 @app.route('/')
 def index():
     return render_template('index.html', data=data, data_table=data.to_html(classes='table'),
-                            reports=reports, leaders=leaders, pages=pages) 
+                            reports=reports, fortune500=fortune500, employees=employees) 
 
 @ext.register_generator
 def index():

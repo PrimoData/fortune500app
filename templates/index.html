@@ -11,9 +11,9 @@
 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Oswald);
-body {
+/*body {
   font-family: 'Oswald', sans-serif !important;
-}
+}*/
 
 h1{
     font-size:4rem;
@@ -39,7 +39,7 @@ p.card-text{
     font-size:4rem;
 }
 
-.glyphicon-user, .glyphicon-stats, .glyphicon-cog {
+.glyphicon-user, .glyphicon-stats, .glyphicon-globe {
     color:white;
     font-size: 15px;
     padding: 10px;
@@ -71,6 +71,7 @@ p.card-text{
 
 .table>tbody>tr>td{
     padding:3px;
+    padding-left: 10px;    
 }
 
 </style>
@@ -78,28 +79,27 @@ p.card-text{
 
 
 {% block title %}
-    Corporate Diversity Data & Reports
+    Corporate Diversity Data
 {% endblock %}
 
 
 {% block content %}
 
-<div class="container-fluid" style="background-color: #153D77; padding-bottom: 20px;">
+<div class="container-fluid" style="background-color: #153D77; padding-bottom: 0px;">
     <div class='row' style="padding-bottom: 20px;">
         <a class="navbar-brand" href="/" style="padding-top: 20px; padding-left: 30px;">
-            <img src="{{ url_for('static', filename='unity.png') }}" height="30" class="d-inline-block align-center" alt="">                
         </a>
-        <h3 style="margin-top:25px; color:white">Corporate Diversity Data</h3>
+        <h3 style="margin-top:25px; color:white"></h3>
     </div>
 </div>
 
-<div class="container-fluid" style="background-color: #153D77; padding-bottom: 100px;">
+<div class="container-fluid" style="background-color: #153D77; padding-bottom: 120px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron" style="padding: 10px 0px;margin-bottom: 10px; background-color: transparent; color: white;">
-                    <h1>Centralized Diversity Data & Reports</h1><br>
-                    <p class="lead">Access diversity data, reports and contacts for the biggest U.S. companies to see what they're doing to address issues of diversity and inclusion in "Corporate America".</p>
+                    <h1>Corporate Diversity Data</h1><br>
+                    <p class="lead">Centralized diversity data & reports for the biggest U.S. companies to see how various genders, races, and ethnicities are represented at various levels in "Corporate America".</p>
                 </div>
             </div>
         </div>
@@ -112,27 +112,27 @@ p.card-text{
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h3 class="card-title">Reports<span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span></h3>
+            <h3 class="card-title">Companies Collected<span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span></h3>
             <p class="card-text">{{reports}}</p>
-            <p>Diversity report or CSR report w/ diversity info.</p>
+            <p>We've collected official & detailed diversity data for large U.S. corporations.</p>
             </div>
         </div>
         </div>
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h3 class="card-title">Datasets<span class="glyphicon glyphicon-cog pull-right" aria-hidden="true"></span></h3>
-            <p class="card-text">10</p>         
-            <p>Official EEO-1 data for companies.</p>
+            <h3 class="card-title">Fortune 500 Coverage<span class="glyphicon glyphicon-globe pull-right" aria-hidden="true"></span></h3>
+            <p class="card-text">{{fortune500}}%</p>         
+            <p>Our data covers the small percentage of corporations willing to publicly disclose their data.</p>
             </div>
         </div>
         </div> 
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h3 class="card-title">Leaders<span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span></h3>
-            <p class="card-text">{{leaders}}</p>
-            <p>Chief Diversity Officer, VP of Diversity, etc...</p>
+            <h3 class="card-title">Employees Included<span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span></h3>
+            <p class="card-text">{{employees}}</p>
+            <p>Our data includes employee gender, race/ethnicity, and job level for each company collected.</p>
             </div>
         </div>
         </div>         
@@ -143,8 +143,9 @@ p.card-text{
             <div class="card">
             <div class="card-body table-card">
             <div style="padding: 10px">
-                <h1>Analyze Data</h1>
-                <p class="lead">We've compiled detailed diversity data (EEO-1) for the only 10 Fortune 100 companies who've provided it since 2016.</p>
+                <h1>Reporting</h1>
+                <p class="lead">Analyze the detailed gender, race/ethnicity, and job level data for every company we've compiled.</p>
+                <a href="{{ url_for('static', filename='eeo_cleaned.xlsx') }}" class="btn btn-outline-primary" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Raw Data (.xlsx)</a>                
             </div>
             <div class='tableauPlaceholder' id='viz1605384266910' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CorporateDiversityData&#47;Dashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1605384266910');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else { vizElement.style.width='100%';vizElement.style.height='1427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
             </div>
@@ -159,50 +160,30 @@ p.card-text{
             <div class="card">
                 <div class="card-body table-card">
                     <div style="padding: 10px">
-                        <h1>Browse Reports</h1>
-                        <p class="lead">We've compiled diversity reports, data, leaders and web pages for every Fortune 100 company.</p>
+                        <h1>The Companies and Data</h1>
+                        <p class="lead">We've compiled diversity data for as many Fortune 500 and S&P 500 companies as possible.</p>
                     </div>
                     <table id="custom" class="table">
                         <thead>
                             <tr>
-                                <th>Fortune Rank</th>
-                                <th>Company</th>
-                                <th>Report</th>
-                                <th>Dataset</th>
-                                <th>Leader</th>
-                                <th>Web Page</th>
+                                <th>Company</th>                                
+                                <th>Fortune 500 Rank</th>
+                                <th>S&P 500</th>                                
+                                <th>Diversity Data</th>
                             </tr>
                         </thead>
                         {% for rownum,row in data.iterrows() %}
-                        <tr>    
-                            <td style="text-align:center">{{row.iloc[0]}}</td>
-                            <td>{{row.iloc[1]}}</td>
-    
-                            {% if (row.iloc[2]) != "N" %}
-                                <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[2]}}</a></td>
+
+                            {% if (row.iloc[6]) != "N" %}
+                                <tr>    
+                                    <td>{{row.iloc[1]}}</td>
+                                    <td>{{row.iloc[0]}}</td>
+                                    <td>{{row.iloc[2]}}</td>
+                                    <td><a href='{{row.iloc[8]}}' target="_blank">{{row.iloc[6]}}</a></td>
+                                </tr>
                             {% else %}
-                                <td></td>
                             {% endif %}
 
-                            {% if (row.iloc[5]) != "N" %}
-                                <td><a href='{{row.iloc[6]}}' target="_blank">{{row.iloc[5]}}</a></td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}                            
-    
-                            {% if (row.iloc[7]) != "N" %}
-                                <td><a href='{{row.iloc[9]}}' target="_blank">{{row.iloc[7]}} ({{row.iloc[8]}})</a></td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
-    
-                            {% if (row.iloc[4]) != "N" %}
-                                <td><a href='{{row.iloc[4]}}' target="_blank">Link</a></td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
-    
-                        </tr>
                         {% endfor %}
                     </table>   
                 </div>
@@ -215,26 +196,45 @@ p.card-text{
 </div>
 
 
-<div class="container-fluid" style="background-color: #4E2A84;">
+<div class="container-fluid"  style="background-color: #4E2A84;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div style="padding:50px; color: white;">
-                    <h1 class="text-center">Have feedback?</h1><br><br>
-                    <h3 style="font-weight: lighter" class="text-center">Please email mershon.max16@gmail.com.</h3>
+                    <h1 class="text-center">About the Data</h1><br><br>
+                    <h3 style="font-weight: lighter">All companies in the U.S. who have 100 or more employees are required to file
+                    EEO-1 reports with the federal government. EEO-1 reports provide the number of employees by gender and race/ethnicity for each job level.
+                    While companies are required to provide this report to the federal government, they are NOT required to share with the public and most do not. 
+                    However, the companies whose data we've collected have choosen to do so.</h3><br />
+                    <h3>To learn more about the different EEO-1 job levels, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-job-classification-guide-2010" target="_blank">here.</a></h3><br />
+                    <h3>To learn more about the different EEO-1 gender and race/ethnicity categories, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-instruction-booklet" target="_blank">here.</a></h3><br />
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="padding:50px; color: black;">
+                    <h1 class="text-center">Have feedback?</h1><br><br>
+                    <h3 style="font-weight: lighter" class="text-center">Reach out to <a href="https://www.linkedin.com/in/maxmershon/" target="_blank">Max Mershon</a> (mershon.max16@gmail.com).</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="container-fluid" style="background-color: white;">
+<hr style="background-color: black; margin:0px">
+
+<div class="container-fluid" style="background-color: #153D77;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <br><br>
-                <p>&#169; 2020 Corporate Diversity Data</p>
+                <p style="color:white;">&#169; 2020 Corporate Diversity Data</p>
                 <br>
             </div>
         </div>
