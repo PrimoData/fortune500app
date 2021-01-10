@@ -174,12 +174,12 @@ p.card-text{
                         </thead>
                         {% for rownum,row in data.iterrows() %}
 
-                            {% if (row.iloc[6]) != "N" %}
+                            {% if (row.iloc[4]) != "N" %}
                                 <tr>    
-                                    <td>{{row.iloc[1]}}</td>
                                     <td>{{row.iloc[0]}}</td>
+                                    <td>{{row.iloc[1]}}</td>
                                     <td>{{row.iloc[2]}}</td>
-                                    <td><a href='{{row.iloc[8]}}' target="_blank">{{row.iloc[6]}}</a></td>
+                                    <td><a href='{{row.iloc[6]}}' target="_blank">{{row.iloc[4]}}</a></td>
                                 </tr>
                             {% else %}
                             {% endif %}

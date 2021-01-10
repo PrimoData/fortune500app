@@ -18,7 +18,7 @@ data.index.name = None
 detailed_data = pd.read_excel("static/eeo_cleaned.xlsx")
 
 reports = str(int(data['EEO Data Report'].value_counts().sum() - data['EEO Data Report'].value_counts()['N']))
-fortune500 = str(int(data.loc[(data['Rank'] != 'n/a') & (data["EEO Data Report"] != 'N'),"EEO Data Report"].value_counts().sum())/500*100)
+fortune500 = str(int(data.loc[(data['Rank'] != 'n/a') & (data["EEO Data Report"] != 'N'),"EEO Data Report"].value_counts().sum())/500*100)[0:3]
 employees = str("{:,}".format(detailed_data["count"].sum()))
 
 @app.route('/')
