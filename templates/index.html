@@ -85,21 +85,23 @@ p.card-text{
 
 {% block content %}
 
-<div class="container-fluid" style="background-color: #153D77; padding-bottom: 0px;">
+<div class="container-fluid" style="background-color: #153D77; padding-bottom: 20px;">
     <div class='row' style="padding-bottom: 20px;">
         <a class="navbar-brand" href="/" style="padding-top: 20px; padding-left: 30px;">
+            <img src="{{ url_for('static', filename='unity.png') }}" height="30" class="d-inline-block align-center" alt="">                
         </a>
+        <h3 style="margin-top:25px; color:white">Corporate Diversity Data</h3>        
         <h3 style="margin-top:25px; color:white"></h3>
     </div>
 </div>
 
-<div class="container-fluid" style="background-color: #153D77; padding-bottom: 120px;">
+<div class="container-fluid" style="background-color: #153D77; padding-bottom: 100px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron" style="padding: 10px 0px;margin-bottom: 10px; background-color: transparent; color: white;">
-                    <h1>Corporate Diversity Data</h1><br>
-                    <p class="lead">Centralized diversity data & reports for the biggest U.S. companies to see how various genders, races, and ethnicities are represented at various levels in "Corporate America".</p>
+                    <h1>Largest Collection of Corporate Diversity Data</h1><br>
+                    <p class="lead">Centralized diversity data & reports for the biggest U.S. companies to see how various genders, races, and ethnicities are represented at different levels in "Corporate America".</p>
                 </div>
             </div>
         </div>
@@ -121,9 +123,9 @@ p.card-text{
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h3 class="card-title">Fortune 500 Coverage<span class="glyphicon glyphicon-globe pull-right" aria-hidden="true"></span></h3>
-            <p class="card-text">{{fortune500}}%</p>         
-            <p>Our data covers the small percentage of corporations willing to publicly disclose their data.</p>
+            <h3 class="card-title">S&P 500 Coverage<span class="glyphicon glyphicon-globe pull-right" aria-hidden="true"></span></h3>
+            <p class="card-text">{{sp500}}%</p>         
+            <p>Our data includes all S&P 500 companies who have publicly disclose their data.</p>
             </div>
         </div>
         </div> 
@@ -143,9 +145,9 @@ p.card-text{
             <div class="card">
             <div class="card-body table-card">
             <div style="padding: 10px">
-                <h1>Reporting</h1>
-                <p class="lead">Analyze the detailed gender, race/ethnicity, and job level data for every company we've compiled.</p>
-                <a href="{{ url_for('static', filename='eeo_cleaned.xlsx') }}" class="btn btn-outline-primary" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Raw Data (.xlsx)</a>                
+                <h1>The Data</h1>
+                <p class="lead">Analyze the detailed gender, race/ethnicity, and job level data for every company we've collected.</p>
+                <a href="{{ url_for('static', filename='EEO Data.xlsx') }}" class="btn btn-outline-primary" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Raw Data (.xlsx)</a>                
             </div>
             <div class='tableauPlaceholder' id='viz1605384266910' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CorporateDiversityData&#47;Dashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1605384266910');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else { vizElement.style.width='100%';vizElement.style.height='1427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
             </div>
@@ -160,8 +162,8 @@ p.card-text{
             <div class="card">
                 <div class="card-body table-card">
                     <div style="padding: 10px">
-                        <h1>The Companies and Data</h1>
-                        <p class="lead">We've compiled diversity data for as many Fortune 500 and S&P 500 companies as possible.</p>
+                        <h1>The Reports</h1>
+                        <p class="lead">Diversity reports (EEO-1) for the S&P 500 and Fortune 500 companies who have publicly released it over the past 5 years.</p>
                     </div>
                     <table id="custom" class="table">
                         <thead>
@@ -169,17 +171,52 @@ p.card-text{
                                 <th>Company</th>                                
                                 <th>Fortune 500 Rank</th>
                                 <th>S&P 500</th>                                
-                                <th>Diversity Data</th>
+                                <th>2015</th>
+                                <th>2016</th>
+                                <th>2017</th>
+                                <th>2018</th>
+                                <th>2019</th>
                             </tr>
                         </thead>
                         {% for rownum,row in data.iterrows() %}
 
                             {% if (row.iloc[4]) != "N" %}
                                 <tr>    
-                                    <td>{{row.iloc[0]}}</td>
-                                    <td>{{row.iloc[1]}}</td>
-                                    <td>{{row.iloc[2]}}</td>
-                                    <td><a href='{{row.iloc[6]}}' target="_blank">{{row.iloc[4]}}</a></td>
+                                    <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[0]}}</a></td>
+                                    <td>{{row.iloc[1]}}</td>                                    
+
+                                    {% if (row.iloc[2]) == "Y" %}
+                                        <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                    {% else %}
+                                        <td></td>  
+                                    {% endif %}
+
+                                    {% if (row.iloc[7]) != "" %}
+                                        <td><a href='{{row.iloc[7]}}' target="_blank">Link</a></td>
+                                    {% else %}
+                                        <td></td>  
+                                    {% endif %}
+                                    {% if (row.iloc[8]) != "" %}
+                                        <td><a href='{{row.iloc[8]}}' target="_blank">Link</a></td>
+                                    {% else %}
+                                        <td></td>  
+                                    {% endif %}
+                                    {% if (row.iloc[9]) != "" %}
+                                        <td><a href='{{row.iloc[9]}}' target="_blank">Link</a></td>
+                                    {% else %}
+                                        <td></td>  
+                                    {% endif %}
+                                    {% if (row.iloc[10]) != "" %}
+                                        <td><a href='{{row.iloc[10]}}' target="_blank">Link</a></td>
+                                    {% else %}
+                                        <td></td>  
+                                    {% endif %}                                                                        
+                                    {% if (row.iloc[11]) != "" %}
+                                        <td><a href='{{row.iloc[12]}}' target="_blank">Link</a></td>
+                                    {% else %}
+                                        <td></td>  
+                                    {% endif %}                                                                        
+
                                 </tr>
                             {% else %}
                             {% endif %}
@@ -204,8 +241,8 @@ p.card-text{
                     <h1 class="text-center">About the Data</h1><br><br>
                     <h3 style="font-weight: lighter">All companies in the U.S. who have 100 or more employees are required to file
                     EEO-1 reports with the federal government. EEO-1 reports provide the number of employees by gender and race/ethnicity for each job level.
-                    While companies are required to provide this report to the federal government, they are NOT required to share with the public and most do not. 
-                    However, the companies whose data we've collected have choosen to do so.</h3><br />
+                    While companies are required to provide this report to the federal government, they are NOT required to share with the public and most do not. However, the companies whose data we've collected have choosen to do so.</h3><br />
+                    <h3 style="font-weight: lighter">Keep in mind, the gender and race/ethnicity categories are per the EEO-1 defintions. These definitions are NOT exhaustive. Gender is a spectrum (not just Male & Female). Also, the ethnicity data is not granular (i.e. "Latino" encompasses many groups, such as, Mexican, Puerto Rican, Dominican, Guatamalan, etc...).</h3><br />
                     <h3>To learn more about the different EEO-1 job levels, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-job-classification-guide-2010" target="_blank">here.</a></h3><br />
                     <h3>To learn more about the different EEO-1 gender and race/ethnicity categories, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-instruction-booklet" target="_blank">here.</a></h3><br />
                     <h3>To see aggregated EEO-1 Data across all U.S. companies and various industries, check out EEO's "EEOC Explore" tool <a href="https://www.eeoc.gov/statistics/employment/jobpatterns/eeo1" target="_blank">here.</a></h3><br />

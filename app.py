@@ -1,30 +1,47 @@
 # cd "C:\Users\Owner\AppData\Local\Programs\Python\Python38-32\fortune500app"
 
+# Import Packages
 from flask import Flask, render_template, request, redirect, flash, url_for
 from flask_bootstrap import Bootstrap
 import pandas as pd
 from flask_sitemap import Sitemap
 
 
-
+# Setup App
 app = Flask(__name__)
 ext = Sitemap(app=app)
 bootstrap = Bootstrap(app)
 app.secret_key = 'development key'
 
-data = pd.read_excel("Fortune500_2020_Final.xlsx")
-data['Rank'] = data['Rank'].fillna(99999).astype("int").astype("str").replace("99999","n/a")
-data.index.name = None
-detailed_data = pd.read_excel("static/eeo_cleaned.xlsx")
 
-reports = str(int(data['EEO Data Report'].value_counts().sum() - data['EEO Data Report'].value_counts()['N']))
-fortune500 = str(int(data.loc[(data['Rank'] != 'n/a') & (data["EEO Data Report"] != 'N'),"EEO Data Report"].value_counts().sum())/500*100)[0:3]
+# Get Data
+data = pd.read_excel("Company Data.xlsx")
+data.index.name = None
+data = data.fillna("")
+
+detailed_data = pd.read_excel("static/EEO Data.xlsx")
+
+data_links = pd.read_excel("Company Data.xlsx", sheet_name="Reports")
+data_links = data_links.pivot(index='Company', columns='Year', values='EEO Data Report Link').fillna("")
+
+data = data.merge(data_links, left_on='Company', right_index=True)
+data['Rank'] = data['Rank'].astype('str').str.replace('.0','')
+
+
+# Numbers
+reports = str(data['Company'].nunique())
+sp500 = str((data.value_counts('S&P 500')['Y'] / 500) *100)
 employees = str("{:,}".format(detailed_data["count"].sum()))
 
+
+# Start App
 @app.route('/')
 def index():
-    return render_template('index.html', data=data, data_table=data.to_html(classes='table'),
-                            reports=reports, fortune500=fortune500, employees=employees) 
+    return render_template('index.html', 
+    						data=data,
+                            reports=reports, 
+                            sp500=sp500, 
+                            employees=employees) 
 
 @ext.register_generator
 def index():
