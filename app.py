@@ -15,13 +15,15 @@ app.secret_key = 'development key'
 
 
 # Get Data
-data = pd.read_excel("Company Data.xlsx")
+data = pd.read_excel("Company Data.xlsx", sheet_name="Companies")
 data.index.name = None
-data = data.fillna("")
+data = data.fillna("")[["Company","Rank","S&P 500","Website","Diversity Page"]]
+data = data.loc[data.Company != ""]
 
 detailed_data = pd.read_excel("static/EEO Data.xlsx")
 
 data_links = pd.read_excel("Company Data.xlsx", sheet_name="Reports")
+data_links = data_links.loc[(data_links.Company != "") & (data_links.Company.isna() != True)][["Company", "Year", "Status", "EEO Data Report Link"]]
 data_links = data_links.pivot(index='Company', columns='Year', values='EEO Data Report Link').fillna("")
 
 data = data.merge(data_links, left_on='Company', right_index=True)

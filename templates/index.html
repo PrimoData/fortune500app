@@ -108,7 +108,7 @@ p.card-text{
     </div>
 </div>       
 
-<div class="container" style="margin-top: -100px;">
+<div class="container" style="margin-top: -100px; ">
 
     <div class="row">
         <div class="col-sm-4">
@@ -145,9 +145,8 @@ p.card-text{
             <div class="card">
             <div class="card-body table-card">
             <div style="padding: 10px">
-                <h1>The Data</h1>
-                <p class="lead">Analyze the detailed gender, race/ethnicity, and job level data for every company we've collected.</p>
-                <a href="{{ url_for('static', filename='EEO Data.xlsx') }}" class="btn btn-outline-primary" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Raw Data (.xlsx)</a>                
+                <h1>Analyze the Data</h1>
+                <p class="lead">Visualize detailed gender, race/ethnicity, and job level data for every company we've collected.</p>
             </div>
             <div class='tableauPlaceholder' id='viz1605384266910' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CorporateDiversityData&#47;Dashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CorporateDiversityData&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1605384266910');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='455px';vizElement.style.maxWidth='1155px';vizElement.style.width='100%';vizElement.style.height='919px';} else { vizElement.style.width='100%';vizElement.style.height='1427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
             </div>
@@ -162,8 +161,9 @@ p.card-text{
             <div class="card">
                 <div class="card-body table-card">
                     <div style="padding: 10px">
-                        <h1>The Reports</h1>
+                        <h1>The Companies & Data</h1>
                         <p class="lead">Diversity reports (EEO-1) for the S&P 500 and Fortune 500 companies who have publicly released it over the past 5 years.</p>
+                        <a href="{{ url_for('static', filename='EEO Data.xlsx') }}" class="btn btn-outline-primary" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Raw Data (.xlsx)</a>                
                     </div>
                     <table id="custom" class="table">
                         <thead>
@@ -233,12 +233,48 @@ p.card-text{
 </div>
 
 
-<div class="container-fluid"  style="background-color: #4E2A84;">
+<div class="container-fluid" style="background-color: #4E2A84; color: white; padding-top: 30px; padding-bottom: 30px; box-shadow: 0px 10px 10px grey">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div style="padding:50px; color: white;">
-                    <h1 class="text-center">About the Data</h1><br><br>
+                <h1 class="text-center">What Makes Us Unique?</h1>
+            </div>            
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img src="{{ url_for('static', filename='database.png') }}" height="100" class="d-inline-block" style="filter: brightness(0) invert(1);" alt="">
+                </div>
+                <h2 class="text-center">Largest Dataset</h2>
+                <p class="text-center">Most comprehensive company level, cross sectional (gender/race/job), timeseries dataset.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img src="{{ url_for('static', filename='analysis.png') }}" height="100" class="d-inline-block" style="filter: brightness(0) invert(1);" alt="">
+                </div>
+                <h2 class="text-center">Analysis Tools</h2>
+                <p class="text-center">Users can analyze our comprehensive dataset with our reporting tools.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img src="{{ url_for('static', filename='technology.png') }}" height="100" class="d-inline-block" style="filter: brightness(0) invert(1);" alt="">
+                </div>
+                <h2 class="text-center">Automation Technology</h2>
+                <p class="text-center">We have developed technology to help automate searching, extracting, and merging company data.</p>
+            </div>                            
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div style="padding:50px;">
+                    <br>
+                    <h1 class="text-center">About the Data</h1><br>
                     <h3 style="font-weight: lighter">All companies in the U.S. who have 100 or more employees are required to file
                     EEO-1 reports with the federal government. EEO-1 reports provide the number of employees by gender and race/ethnicity for each job level.
                     While companies are required to provide this report to the federal government, they are NOT required to share with the public and most do not. However, the companies whose data we've collected have choosen to do so.</h3><br />
@@ -246,18 +282,27 @@ p.card-text{
                     <h3>To learn more about the different EEO-1 job levels, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-job-classification-guide-2010" target="_blank">here.</a></h3><br />
                     <h3>To learn more about the different EEO-1 gender and race/ethnicity categories, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-instruction-booklet" target="_blank">here.</a></h3><br />
                     <h3>To see aggregated EEO-1 Data across all U.S. companies and various industries, check out EEO's "EEOC Explore" tool <a href="https://www.eeoc.gov/statistics/employment/jobpatterns/eeo1" target="_blank">here.</a></h3><br />
+                    <h3 style="font-weight: lighter">Data Sources:</h3>
+                    <ul>
+                        <li><a href="http://opendiversitydata.org/" target="_blank">Open Diversity Data</a></li>
+                        <li><a href="https://www.diversityreports.org/" target="_blank">Diversity Reports</a></li>
+                        <li><a href="https://justcapital.com/news/a-small-fraction-of-corporations-share-diversity-data-but-disclosure-is-rapidly-on-the-rise/" target="_blank">Just Capital </a></li>
+                        <li><a href="https://fortune.com/2017/06/16/why-we-logged-every-fortune-500-companys-diversity-data-or-lack-thereof/" target="_blank">Forbes</a></li>
+                        <li><a href="https://www.bloomberg.com/graphics/diversity-equality-in-american-business/" target="_blank">Bloomberg</a></li>
+                        <li><a href="https://www.washingtonpost.com/business/2019/12/06/wall-street-says-it-cares-about-diversity-most-big-banks-wont-share-complete-workforce-data/" target="_blank">Washington Post</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #153D77; color: white;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div style="padding:50px; color: black;">
-                    <h1 class="text-center">Have feedback?</h1><br><br>
+                <div style="padding:50px;">
+                    <h1 class="text-center">Have feedback?</h1><br>
                     <h3 style="font-weight: lighter" class="text-center">Reach out to <a href="https://www.linkedin.com/in/maxmershon/" target="_blank">Max Mershon</a> (mershon.max16@gmail.com).</h3>
                 </div>
             </div>
@@ -267,12 +312,12 @@ p.card-text{
 
 <hr style="background-color: black; margin:0px">
 
-<div class="container-fluid" style="background-color: #153D77;">
+<div class="container-fluid">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <br><br>
-                <p style="color:white;">&#169; 2020 Corporate Diversity Data</p>
+                <p>&#169; 2020 Corporate Diversity Data</p>
                 <br>
             </div>
         </div>
