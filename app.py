@@ -15,22 +15,27 @@ app.secret_key = 'development key'
 
 
 # Get Data
+## Companies
 data = pd.read_excel("Company Data.xlsx", sheet_name="Companies")
 data.index.name = None
 data = data.fillna("")[["Company","Rank","S&P 500","Website","Diversity Page"]]
 data = data.loc[data.Company != ""]
 
+## EEO Data
 detailed_data = pd.read_excel("static/EEO Data.xlsx")
 
+## Report Links
 data_links = pd.read_excel("Company Data.xlsx", sheet_name="Reports")
 data_links = data_links.loc[(data_links.Company != "") & (data_links.Company.isna() != True)][["Company", "Year", "Status", "EEO Data Report Link"]]
 data_links = data_links.pivot(index='Company', columns='Year', values='EEO Data Report Link').fillna("")
 
+## Combine Data
 data = data.merge(data_links, left_on='Company', right_index=True)
-data['Rank'] = data['Rank'].astype('str').str.replace('.0','')
+data.loc[data['Rank'] == '',"Rank"] = 99999
+data['Rank'] = data['Rank'].astype('int')
+data.loc[data['Rank'] == 99999,"Rank"] = ''
 
-
-# Numbers
+# Calculate Numbers
 reports = str(data['Company'].nunique())
 sp500 = str((data.value_counts('S&P 500')['Y'] / 500) *100)
 employees = str("{:,}".format(detailed_data["count"].sum()))
