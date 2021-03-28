@@ -133,7 +133,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron">
+                <div class="jumbotron" style="padding-left: 0px; padding-right: 0px;">
                     <h1>Largest Collection of Corporate Diversity Data</h1><br>
                     <p class="lead">Centralized diversity data & reports for the biggest U.S. companies to see how various genders, races, and ethnicities are represented at different levels in "Corporate America".</p>
                 </div>
@@ -152,7 +152,7 @@
             <div class="card-body">
             <h3 class="card-title">Companies Collected<span class="glyphicon glyphicon-stats pull-right" aria-hidden="true"></span></h3>
             <p class="card-text">{{reports}}</p>
-            <p>We've collected official & detailed diversity data for large U.S. corporations.</p>
+            <p># of large U.S. corporations we've collected data on.</p><br>
             </div>
         </div>
         </div>
@@ -161,16 +161,16 @@
             <div class="card-body">
             <h3 class="card-title">S&P 500 Coverage<span class="glyphicon glyphicon-globe pull-right" aria-hidden="true"></span></h3>
             <p class="card-text">{{sp500}}%</p>         
-            <p>Our data includes all S&P 500 companies who have publicly disclose their data.</p>
+            <p>% of S&P 500 companies who've publicly disclosed diversity data.</p>
             </div>
         </div>
         </div> 
         <div class="col-sm-4">
         <div class="card">
             <div class="card-body">
-            <h3 class="card-title">Employees Included<span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span></h3>
-            <p class="card-text">{{employees}}</p>
-            <p>Our data includes employee gender, race/ethnicity, and job level for each company collected.</p>
+            <h3 class="card-title">EEO-1 Reports Included<span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span></h3>
+            <p class="card-text">{{reports_ct}}</p>
+            <p>EEO-1 reports include diversity data such as gender, race/ethnicity, and job level.</p>
             </div>
         </div>
         </div>         
@@ -210,24 +210,24 @@
             <div class="col-md-4">
                 <div class="text-center">
                     <img src="{{ url_for('static', filename='database.png') }}" height="100" class="d-inline-block" alt="">
-                </div>
+                </div><br>
                 <h2 class="text-center">Largest Dataset</h2>
+                <p class="text-center">Largest set of U.S. company EEO-1 data across multiple years.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img src="{{ url_for('static', filename='sync.png') }}" height="100" class="d-inline-block" alt="">
+                </div><br>
+                <h2 class="text-center">Data Refreshed</h2>
+                <p class="text-center">Data is updated with the latest publicly released EEO-1 reports.</p>
+            </div>  
+            <div class="col-md-4">
+                <div class="text-center">
+                    <img src="{{ url_for('static', filename='employee.png') }}" height="100" class="d-inline-block" alt="">
+                </div><br>
+                <h2 class="text-center">Granular Data</h2>
                 <p class="text-center">Most comprehensive company level, cross sectional (gender/race/job), timeseries dataset.</p>
-            </div>
-            <div class="col-md-4">
-                <div class="text-center">
-                    <img src="{{ url_for('static', filename='analysis.png') }}" height="100" class="d-inline-block" alt="">
-                </div>
-                <h2 class="text-center">Analysis Tools</h2>
-                <p class="text-center">Users can analyze our comprehensive dataset with our reporting tools.</p>
-            </div>
-            <div class="col-md-4">
-                <div class="text-center">
-                    <img src="{{ url_for('static', filename='technology.png') }}" height="100" class="d-inline-block" alt="">
-                </div>
-                <h2 class="text-center">Automation Technology</h2>
-                <p class="text-center">We have developed technology to help automate searching, extracting, and merging company data.</p>
-            </div>                            
+            </div>                                    
         </div>
     </div>
 </div>
@@ -243,14 +243,12 @@
                 <div class="card-body table-card">
                     <div style="padding: 10px">
                         <h1>The Companies & Data</h1>
-                        <p class="lead">Diversity reports (EEO-1) for the S&P 500 and Fortune 500 companies who have publicly released it over the past 5 years.</p>
-                        <a href="{{ url_for('static', filename='EEO Data.xlsx') }}" class="btn btn-outline-primary" download><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Raw Data (.xlsx)</a>                
+                        <p class="lead">Diversity reports (EEO-1) for large U.S. corporations who have publicly released it over the past 5 years.</p>            
                     </div>
                     <table id="custom" class="table table-striped table-bordered table-sm">
                         <thead>
                             <tr>
                                 <th>Company</th>                                
-                                <th>Fortune 500 Rank</th>
                                 <th>S&P 500</th>                                
                                 <th>2015</th>
                                 <th>2016</th>
@@ -262,37 +260,34 @@
                         {% for rownum,row in data.iterrows() %}
 
                             <tr>    
-                                <td><a href='{{row.iloc[3]}}' target="_blank">{{row.iloc[0]}}</a></td>
-                                <td>{{row.iloc[1]}}</td>                                    
-
+                                <td><a href='{{row.iloc[4]}}' target="_blank">{{row.iloc[0]}}</a></td>
                                 {% if (row.iloc[2]) == "Y" %}
                                     <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                                 {% else %}
                                     <td></td>  
-                                {% endif %}
-
-                                {% if (row.iloc[7]) != "" %}
-                                    <td><a href='{{row.iloc[7]}}' target="_blank">Link</a></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}
+                                {% endif %}                                                                                            
                                 {% if (row.iloc[8]) != "" %}
-                                    <td><a href='{{row.iloc[8]}}' target="_blank">Link</a></td>
+                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                                 {% else %}
                                     <td></td>  
                                 {% endif %}
                                 {% if (row.iloc[9]) != "" %}
-                                    <td><a href='{{row.iloc[9]}}' target="_blank">Link</a></td>
+                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                                 {% else %}
                                     <td></td>  
                                 {% endif %}
                                 {% if (row.iloc[10]) != "" %}
-                                    <td><a href='{{row.iloc[10]}}' target="_blank">Link</a></td>
+                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                {% else %}
+                                    <td></td>  
+                                {% endif %}
+                                {% if (row.iloc[11]) != "" %}
+                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                                 {% else %}
                                     <td></td>  
                                 {% endif %}                                                                        
-                                {% if (row.iloc[11]) != "" %}
-                                    <td><a href='{{row.iloc[12]}}' target="_blank">Link</a></td>
+                                {% if (row.iloc[12]) != "" %}
+                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                                 {% else %}
                                     <td></td>  
                                 {% endif %}                                                                        
@@ -340,30 +335,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div style="padding:50px;">
-                    <h1 class="text-center">Sign-up for our newsletter!</h1><br>
-
-                    <!-- Begin Mailchimp Signup Form -->
-                    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-                    <style type="text/css">
-                        #mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-                        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-                           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-                    </style>
-                    <div id="mc_embed_signup">
-                    <form action="https://corporatediversitydata.us7.list-manage.com/subscribe/post?u=626ff404eccc5deaf5cbda28c&amp;id=c66400ecf6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                        <div id="mc_embed_signup_scroll">
-                        
-                        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email Address" required>
-                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_626ff404eccc5deaf5cbda28c_c66400ecf6" tabindex="-1" value=""></div>
-                        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background-color:green"></div>
-                        </div>
-                    </form>
-                    </div>
-
-                    <!--End mc_embed_signup-->
-                    <br>
-                    <h3 class="text-center">Have feedback?</h1>
+                    <h1 class="text-center">Have questions/feedback?</h1><br>                                    
                     <h3 style="font-weight: lighter" class="text-center">Reach out to <a href="https://www.linkedin.com/in/maxmershon/" target="_blank">Max Mershon</a> (mershon.max16@gmail.com).</h3>
                 </div>
             </div>
@@ -373,54 +345,18 @@
 
 <hr style="background-color: black; margin:0px">
 
+
 <!-- Footer -->
 <div class="container-fluid">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <br><br>
-                <p>&#169; 2020 Corporate Diversity Data</p>
+                <p>&#169; 2021 Corporate Diversity Data</p>
                 <br>
             </div>
         </div>
     </div>
-</div>
-
-
-
-
-<!-- Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog" >
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1 class="text-center">Sign-up for our newsletter!</h1><br>
-
-        <!-- Begin Mailchimp Signup Form -->
-        <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-        <style type="text/css">
-            #mc_embed_signup{clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-            /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-               We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-        </style>
-        <div id="mc_embed_signup">
-        <form action="https://corporatediversitydata.us7.list-manage.com/subscribe/post?u=626ff404eccc5deaf5cbda28c&amp;id=c66400ecf6" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-            <div id="mc_embed_signup_scroll">
-            
-            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email Address" required>
-            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_626ff404eccc5deaf5cbda28c_c66400ecf6" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background-color:green"></div>
-            </div>
-        </form>
-        </div>
-
-        <!--End mc_embed_signup-->
-
-      </div>
-    </div>
-  </div>
 </div>
 
 {% endblock %}

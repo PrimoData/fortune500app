@@ -21,12 +21,10 @@ data.index.name = None
 data = data.fillna("")[["Company","Rank","S&P 500","Website","Diversity Page"]]
 data = data.loc[data.Company != ""]
 
-## EEO Data
-detailed_data = pd.read_excel("static/EEO Data.xlsx")
-
 ## Report Links
 data_links = pd.read_excel("Company Data.xlsx", sheet_name="Reports")
 data_links = data_links.loc[(data_links.Company != "") & (data_links.Company.isna() != True)][["Company", "Year", "Status", "EEO Data Report Link"]]
+reports_ct = str(len(data_links))
 data_links = data_links.pivot(index='Company', columns='Year', values='EEO Data Report Link').fillna("")
 
 ## Combine Data
@@ -38,7 +36,6 @@ data.loc[data['Rank'] == 99999,"Rank"] = ''
 # Calculate Numbers
 reports = str(data['Company'].nunique())
 sp500 = str((data.value_counts('S&P 500')['Y'] / 500) *100)
-employees = str("{:,}".format(detailed_data["count"].sum()))
 
 
 # Start App
@@ -48,7 +45,7 @@ def index():
     						data=data,
                             reports=reports, 
                             sp500=sp500, 
-                            employees=employees) 
+                            reports_ct=reports_ct) 
 
 @ext.register_generator
 def index():
