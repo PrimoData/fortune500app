@@ -236,75 +236,10 @@
 <!-- Reports -->
 <div class="container">
 
-    <!-- Reports Table -->
-    <div class="row" style="margin-top: 60px;">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body table-card">
-                    <div style="padding: 10px">
-                        <h1>The Companies & Data</h1>
-                        <p class="lead">Diversity reports (EEO-1) for large U.S. corporations who have publicly released it over the past 5 years.</p>            
-                    </div>
-                    <table id="custom" class="table table-striped table-bordered table-sm">
-                        <thead>
-                            <tr>
-                                <th>Company</th>                                
-                                <th>S&P 500</th>                                
-                                <th>2015</th>
-                                <th>2016</th>
-                                <th>2017</th>
-                                <th>2018</th>
-                                <th>2019</th>
-                            </tr>
-                        </thead>
-                        {% for rownum,row in data.iterrows() %}
-
-                            <tr>    
-                                <td><a href='{{row.iloc[4]}}' target="_blank">{{row.iloc[0]}}</a></td>
-                                {% if (row.iloc[2]) == "Y" %}
-                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}                                                                                            
-                                {% if (row.iloc[8]) != "" %}
-                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}
-                                {% if (row.iloc[9]) != "" %}
-                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}
-                                {% if (row.iloc[10]) != "" %}
-                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}
-                                {% if (row.iloc[11]) != "" %}
-                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}                                                                        
-                                {% if (row.iloc[12]) != "" %}
-                                    <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                {% else %}
-                                    <td></td>  
-                                {% endif %}                                                                        
-
-                            </tr>
-
-                        {% endfor %}
-                    </table>   
-                </div>
-            </div>             
-        </div>        
-    </div>
-    
     <!-- About Data-->
     <div class="row">
         <div class="col-md-12">
-            <br>
+            <br><br>
             <h1 class="text-center">About the Data</h1><br>
             <h3 style="font-weight: lighter">All companies in the U.S. who have 100 or more employees are required to file
             EEO-1 reports with the federal government. EEO-1 reports provide the number of employees by gender and race/ethnicity for each job level.
@@ -313,15 +248,6 @@
             <h3>To learn more about the different EEO-1 job levels, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-job-classification-guide-2010" target="_blank">here.</a></h3><br />
             <h3>To learn more about the different EEO-1 gender and race/ethnicity categories, click <a href="https://www.eeoc.gov/employers/eeo-1-survey/eeo-1-instruction-booklet" target="_blank">here.</a></h3><br />
             <h3>To see aggregated EEO-1 Data across all U.S. companies and various industries, check out EEO's "EEOC Explore" tool <a href="https://www.eeoc.gov/statistics/employment/jobpatterns/eeo1" target="_blank">here.</a></h3><br />
-            <h3 style="font-weight: lighter">Data Sources:</h3>
-            <ul>
-                <li><a href="http://opendiversitydata.org/" target="_blank">Open Diversity Data</a></li>
-                <li><a href="https://www.diversityreports.org/" target="_blank">Diversity Reports</a></li>
-                <li><a href="https://justcapital.com/news/a-small-fraction-of-corporations-share-diversity-data-but-disclosure-is-rapidly-on-the-rise/" target="_blank">Just Capital </a></li>
-                <li><a href="https://fortune.com/2017/06/16/why-we-logged-every-fortune-500-companys-diversity-data-or-lack-thereof/" target="_blank">Forbes</a></li>
-                <li><a href="https://www.bloomberg.com/graphics/diversity-equality-in-american-business/" target="_blank">Bloomberg</a></li>
-                <li><a href="https://www.washingtonpost.com/business/2019/12/06/wall-street-says-it-cares-about-diversity-most-big-banks-wont-share-complete-workforce-data/" target="_blank">Washington Post</a></li>
-            </ul>
             <br><br>
         </div>
     </div>
